@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://your-frontend-domain.com"],
     credentials: true
 }));
 
@@ -28,8 +28,8 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        secure: true,  // only send cookie over HTTPS
-        sameSite: "none",
+        secure: process.env.NODE_ENV === "production",  // only send cookie over HTTPS
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         maxAge: 1000 * 60 * 60  // 1 hour session
     }
 }));
@@ -146,7 +146,7 @@ app.post("/logout", (request, response) => {
         if (err) {
             return response.status(500).json({ error_msg: "Logout failed" });
         }
-        response.clearCookie("connect.sid"); // remove cookie from browser
+        response.clearCookie("connect.sid", { path: "/" }); // remove cookie from browser
         response.json({ message: "Logged out successfully" });
     });
 });

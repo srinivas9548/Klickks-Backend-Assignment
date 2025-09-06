@@ -1,0 +1,31 @@
+{
+  "name": "klickks-backend-assignment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srinivas9548/Klickks-Backend-Assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srinivas9548/Klickks-Backend-Assignment/issues"
+  },
+  "homepage": "https://github.com/srinivas9548/Klickks-Backend-Assignment#readme",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "nodemon": "^3.1.10",
+    "sqlite3": "^5.1.7"
+  }
+}

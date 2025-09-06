@@ -1,0 +1,38 @@
+// Register User API
+POST http://localhost:4000/users
+Content-Type: application/json
+
+{
+    "email": "srinu@gmail.com",
+    "password": "srinu@2022"
+}
+
+###
+
+// Login User
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "email": "srinu@gmail.com",
+    "password": "srinu@2022"
+}
+
+###
+
+// Get Dashboard
+GET http://localhost:4000/dashboard
+Content-Type: application/json
+
+### 
+
+// Logout User
+POST http://localhost:4000/logout
+Content-Type: application/json
+
+###
+
+// Initial API
+GET http://localhost:4000
+
+###

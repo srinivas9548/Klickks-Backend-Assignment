@@ -22,10 +22,10 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        secure: false,  // set true if only HTTPS
+        secure: true,  // only send cookie over HTTPS
         maxAge: 1000 * 60 * 60  // 1 hour session
     }
-}))
+}));
 
 const dbPath = path.join(__dirname, "users.db");
 
@@ -111,7 +111,10 @@ app.post("/login", async (request, response) => {
             } else {
                 const isPasswordMatched = await bcrypt.compare(password, dbUser.password);
                 if (isPasswordMatched) {
+                    // Set session
                     request.session.user = { id: dbUser.id, email: dbUser.email };
+
+                    // Session cookie is automatically sent by express-session
                     response.json({ message: "Login Successful", user: request.session.user });
                 } else {
                     response.status(400).json({ error_msg: "Email and password didn't match" })

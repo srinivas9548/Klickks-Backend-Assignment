@@ -13,9 +13,13 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
-
 app.use(cookieParser());
+
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}));
+
 app.use(session({
     secret: process.env.SESSION_SECRET || "mysecret",
     resave: false,
@@ -23,6 +27,7 @@ app.use(session({
     cookie: {
         httpOnly: true,
         secure: true,  // only send cookie over HTTPS
+        sameSite: "none",
         maxAge: 1000 * 60 * 60  // 1 hour session
     }
 }));

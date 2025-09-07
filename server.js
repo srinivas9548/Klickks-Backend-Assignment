@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: ["http://localhost:3000", "https://your-frontend-domain.com"],
+    origin: ["http://localhost:3000", "https://srinivas-klickks-frontend-api.vercel.app"],
     credentials: true
 }));
 

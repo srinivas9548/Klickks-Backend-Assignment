@@ -144,9 +144,16 @@ app.get("/dashboard", (request, response) => {
 app.post("/logout", (request, response) => {
     request.session.destroy((err) => {
         if (err) {
+            console.error("Session destroy error:", err);
             return response.status(500).json({ error_msg: "Logout failed" });
         }
-        response.clearCookie("connect.sid", { path: "/" }); // remove cookie from browser
+        response.clearCookie("connect.sid", {
+            path: "/",
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
+        });
+
         response.json({ message: "Logged out successfully" });
     });
 });
